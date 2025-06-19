@@ -27,23 +27,10 @@
 - 🛡️ Group Moderation (antilink, antibot, admin-only)
 - 🧠 Banned words auto-delete
 - ⚙️ Admin commands panel
-- 📡 Fully deployable on **Render**, no Termux needed
+- 📡 Fully deployable on **Render**, no Termux
 
----
 
-## 📁 File Structure
 
-```bash
-📦 SAVAGE-XMD/
-┣ 📂 commands/         # Command modules (menus, banword, etc.)
-┣ 📂 handlers/         # Message and event logic
-┣ 📂 middleware/       # Banned words middleware
-┣ 📂 public/           # Frontend (index.html for scanner UI)
-┣ 📂 routes/           # Pairing/QR API routes
-┣ 📂 utils/            # Logger & config helper
-┣ 📄 bot.js            # Bot core logic
-┣ 📄 server.js         # Express server entry
-┣ 📄 startSocket.js    # WhatsApp socket initializer
-┣ 📄 .env.example      # Environment config example
-┣ 📄 package.json      # Dependencies
-┣ 📄 README.md         # You are here!
+            ENJOY SAVAGE XMD WHATSAPP BOY DEVELOPED BY
+                           SAVAGE  BOY
+                         +255 765 457 691
