@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAVAGE-XMD Session Scanner</title>
+  <style>
+    body { background-color: black; color: red; text-align: center; font-family: Arial, sans-serif; }
+    select, input, button { font-size: 16px; padding: 8px; margin-top: 10px; }
+    img { margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>SAVAGE-XMD Session Scanner</h1>
+  <p>Choose login method:</p>
+  <select id="loginMethod">
+    <option value="qr">QR Code</option>
+    <option value="pairing">Pairing Code</option>
+  </select>
+  <div id="pairingInput" style="display:none;">
+    <input type="text" id="number" placeholder="Enter phone number" />
+  </div>
+  <br>
+  <button onclick="startSession()">Start Session</button>
+  <p id="status"></p>
+  <img id="qrImage" src="" style="width:300px;" />
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const method = document.getElementById('loginMethod');
+    const pairingInput = document.getElementById('pairingInput');
+    const status = document.getElementById('status');
+    const qrImage = document.getElementById('qrImage');
+    const socket = io();
+
+    method.addEventListener('change', () => {
+      pairingInput.style.display = method.value === 'pairing' ? 'block' : 'none';
+    });
+
+    function startSession() {
+      status.textContent = "Starting session...";
+      qrImage.src = "";
+
+      if (method.value === 'qr') {
+        fetch('/api/qr')
+          .then(res => res.json())
+          .catch(() => status.textContent = "Failed to start QR session.");
+      } else {
+        const number = document.getElementById('number').value;
+        fetch('/api/pairing', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ number })
+        })
+        .then(res => res.json())
+        .catch(() => status.textContent = "Failed to generate pairing code.");
+      }
+    }
+
+    socket.on('qr', (data) => {
+      qrImage.src = data.src;
+      status.textContent = "Scan the QR code using WhatsApp";
+    });
+
+    socket.on('ready', (data) => {
+      status.textContent = data.message;
+    });
+  </script>
+</body>
+</html>
