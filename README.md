@@ -1,1 +1,1 @@
-# SAVAGE-XMD
+// Placeholder for README.md
