@@ -15,7 +15,7 @@
 
 👉 Start your bot session via pairing or QR code using our public scanner:  
 **🌐 [SAVAGE-XMD SESSION SCANNER](https://savage-xmd-session-scanner.onrender.com/)**
-
+**♠️  [https://session-scanner-hsov.onrender.com]
 ---
 
 ## 🚀 Features
